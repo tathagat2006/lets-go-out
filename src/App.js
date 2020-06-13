@@ -2,6 +2,7 @@ import React from "react";
 import { Nav } from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AddTrip } from "./components/trip/AddTrip";
+import { TripList } from "./components/trip/TripList";
 
 export class App extends React.Component {
   constructor(props) {
@@ -11,6 +12,11 @@ export class App extends React.Component {
         {
           place: "Delhi",
           date: "2020-06-06",
+          type: "Club",
+        },
+        {
+          place: "Rajasthan",
+          date: "2020-06-07",
           type: "Club",
         },
       ],
@@ -32,6 +38,12 @@ export class App extends React.Component {
         <div className="route-container">
           <Nav />
           <Switch>
+            <Route
+              path="/list"
+              render={(props) => (
+                <TripList {...props} trips={this.state.allTrips} />
+              )}
+            />
             <Route
               path="/add"
               render={(props) => (
